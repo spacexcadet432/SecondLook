@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://secondlook.framer.website/sitemap.xml
+Sitemap: https://secondlook.spacexcadet432.workers.dev/sitemap.xml
