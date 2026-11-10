@@ -8,6 +8,31 @@
 <meta content="width=device-width" name="viewport"/>
 
 <title>SecondLook | A fresh perspective</title>
+<!-- Prevent the stale template title supplied by the Framer export runtime. -->
+<script data-secondlook-title-guard>
+(() => {
+  let prototype = Object.getPrototypeOf(document);
+  let titleDescriptor;
+  while (prototype && !titleDescriptor) {
+    titleDescriptor = Object.getOwnPropertyDescriptor(prototype, "title");
+    prototype = Object.getPrototypeOf(prototype);
+  }
+  if (!titleDescriptor?.get || !titleDescriptor?.set) return;
+
+  Object.defineProperty(document, "title", {
+    configurable: true,
+    enumerable: titleDescriptor.enumerable,
+    get() {
+      return titleDescriptor.get.call(document);
+    },
+    set(value) {
+      const nextTitle = String(value ?? "");
+      if (/^MaestroClass\b/i.test(nextTitle)) return;
+      titleDescriptor.set.call(document, nextTitle);
+    },
+  });
+})();
+</script>
 <link href="https://secondlook.spacexcadet432.workers.dev/" rel="canonical"/>
 <meta content="SecondLook" name="application-name"/>
 <meta content="Find a fresh perspective on relationship uncertainty with SecondLook through guided reflection and writing from real authors—not generic advice or endless chat." name="description"/>
